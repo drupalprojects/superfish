@@ -1090,18 +1090,31 @@ function superfish_block_validate($form, &$form_state) {
 }
 
 /**
+ * Helper function to get library paths.
+ */
+function superfish_get_path($library = 'superfish') {
+  $directory = '';
+  // Ensure the Libraries API module is installed.
+  if (module_exists('libraries') && function_exists('libraries_get_path')) {
+    $directory = libraries_get_path($library);
+  }
+  // Otherwise use the default directory.
+  else {
+    $directory = 'sites/all/libraries/' . $library;
+  }
+  // Just in case the Libraries API could not find the library.
+  if (empty($directory)) {
+    $directory = 'sites/all/libraries/' . $library;
+  }
+  return $directory;
+}
+
+/**
  * Get a list of CSS files that can be used for styles.
  */
 function superfish_styles($display = 'list', $style = NULL) {
   $output = '';
-  // Ensure the Libraries API module is installed and working.
-  if (module_exists('libraries') && function_exists('libraries_get_path')) {
-    $directory = libraries_get_path('superfish') . '/style';
-  }
-  // Otherwise use the default directory.
-  else {
-    $directory = 'sites/all/libraries/superfish/style';
-  }
+  $directory = superfish_get_path('superfish') .'/style';
   $files = (file_exists($directory)) ? file_scan_directory($directory, '\.css$', array('.', '..'), 0, TRUE, 'name') : '';
   if ($display == 'list') {
     $output = array('none' => '- '. t('None') .' -');
@@ -1145,14 +1158,7 @@ function array_remove_empty($haystack) {
  * Implements hook_init().
  */
 function superfish_init() {
-  // Ensure the Libraries API module is installed and working.
-  if (module_exists('libraries') && function_exists('libraries_get_path')) {
-    $directory = libraries_get_path('superfish');
-  }
-  // Otherwise use the default directory.
-  else {
-    $directory = 'sites/all/libraries/superfish';
-  }
+  $directory = superfish_get_path('superfish');
   $slp_default = $directory . "/jquery.hoverIntent.minified.js\n" .
     $directory . "/jquery.bgiframe.min.js\n" .
     $directory . "/superfish.js\n" .
