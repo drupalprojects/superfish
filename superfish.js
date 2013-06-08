@@ -28,6 +28,9 @@
         if (options.plugins.smallscreen || false) {
           list.sfsmallscreen(options.plugins.smallscreen);
         }
+        if (options.plugins.automaticwidth || false) {
+          list.sfautomaticwidth();
+        }
         if (options.plugins.supposition || false) {
           list.supposition();
         }
