@@ -1003,8 +1003,10 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
       $sfplugins['bgiframe'] = (variable_get('superfish_bgf_'. $delta, 0) == 1) ? TRUE : '';
 
       if (variable_get('superfish_supersubs_'. $delta, 1) == 1) {
-        $sfplugins['supersubs']['minWidth'] = (variable_get('superfish_minwidth_' . $delta, 12) != 12) ? $minwdith : '';
-        $sfplugins['supersubs']['maxWidth'] = (variable_get('superfish_maxwidth_' . $delta, 27) != 27) ? $maxwidth : '';
+        $minwidth = variable_get('superfish_minwidth_' . $delta, 12);
+        $maxwidth = variable_get('superfish_maxwidth_' . $delta, 27);
+        $sfplugins['supersubs']['minWidth'] = ($minwidth != 12) ? $minwidth : '';
+        $sfplugins['supersubs']['maxWidth'] = ($maxwidth != 27) ? $maxwidth : '';
         if (empty($sfplugins['supersubs']['minWidth']) && empty($sfplugins['supersubs']['maxWidth'])) {
           $sfplugins['supersubs'] = TRUE;
         }
