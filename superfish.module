@@ -1585,7 +1585,7 @@ function theme_superfish_build($id, $menu, $depth = -1, $trail = NULL, $clone_pa
             ),
             'below' => ($show_children) ? $children['content'] : NULL,
             'item' => $menu_item,
-            'localized_options' => $link_options,
+            'localized_options' => $menu_item['link']['localized_options'],
           ),
           'properties' => array(
             'megamenu' => array(
