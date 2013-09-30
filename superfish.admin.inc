@@ -24,7 +24,7 @@ function superfish_library_path() {
       $directory . "/supersubs.js\n" .
       $directory . "/supposition.js\n" .
       $directory . "/sftouchscreen.js\n" .
-      $directory . "/sfsmallscreen.js";
+      $directory . "/sfsmallscreen.js\n";
   }
   else {
     $output = '';

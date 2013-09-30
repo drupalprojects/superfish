@@ -870,7 +870,7 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
                     case 0 :
                       if (preg_match('/(android|bb\d+|meego)|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i', $hua)) {
                         $sfplugins['touchscreen']['mode'] = 'always_active';
-                        if ($behaviour == 2){
+                        if ($behaviour == 2) {
                           $sfsettings['clone_parent'] = 1;
                         }
                       }
@@ -890,7 +890,7 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
                       }
                       if (in_array(1, $tsuac)) {
                         $sfplugins['touchscreen']['mode'] = 'always_active';
-                        if ($behaviour == 2){
+                        if ($behaviour == 2) {
                           $sfsettings['clone_parent'] = 1;
                         }
                       }
@@ -1422,7 +1422,7 @@ function theme_superfish_build($id, $menu, $depth = -1, $trail = NULL, $clone_pa
 
   // sfTouchscreen.
   // Adding cloned parent to the sub-menu.
-  if ($clone_parent !== FALSE){
+  if ($clone_parent !== FALSE) {
     array_unshift($menu, $clone_parent);
   }
 
@@ -1529,12 +1529,12 @@ function theme_superfish_build($id, $menu, $depth = -1, $trail = NULL, $clone_pa
         // sfTouchscreen.
         // Preparing the cloned parent links to be added to the sub-menus.
         $below_visible = array();
-        foreach ($menu_item['below'] as $below){
-          if (!isset($below['link']['hidden']) || $below['link']['hidden'] == 0){
+        foreach ($menu_item['below'] as $below) {
+          if (!isset($below['link']['hidden']) || $below['link']['hidden'] == 0) {
             $below_visible[] = 1;
           }
         }
-        if ($settings['clone_parent'] == 1 && in_array(1, $below_visible)){
+        if ($settings['clone_parent'] == 1 && in_array(1, $below_visible)) {
           $clone_parent = $menu_item;
           unset($clone_parent['below']);
           unset($clone_parent['has_children']);
@@ -1543,7 +1543,7 @@ function theme_superfish_build($id, $menu, $depth = -1, $trail = NULL, $clone_pa
 
           $clone_parent = FALSE;
         }
- 
+
         // Render the sub-menu.
         $children = theme('superfish_build', $id, $menu_item['below'], $depth, $trail, $clone_parent, $sfsettings);
         // Check to see whether it should be displayed.
@@ -1593,7 +1593,6 @@ function theme_superfish_build($id, $menu, $depth = -1, $trail = NULL, $clone_pa
               'megamenu_wrapper' => $megamenu_wrapper,
               'megamenu_content' => $megamenu_content,
             ),
-            'use_link_theme' => $settings['use_link_theme'],
             'wrapper' => array(
               'wul' => $wul,
               'whl' => $whl,
