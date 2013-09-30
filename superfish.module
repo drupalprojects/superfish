@@ -1244,7 +1244,8 @@ function superfish_init() {
     $directory . "/supersubs.js\n" .
     $directory . "/supposition.js\n" .
     $directory . "/sftouchscreen.js\n" .
-    $directory . "/sfsmallscreen.js";
+    $directory . "/sfsmallscreen.js\n" .
+    $directory . "/sfautomaticwidth.js";
 
   $sf_library = variable_get('superfish_slp', $slp_default);
   $sf_library = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", trim($sf_library));
