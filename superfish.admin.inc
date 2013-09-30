@@ -40,6 +40,10 @@ function superfish_system_settings_form($form) {
   if (!empty($_POST) && form_get_errors()) {
     drupal_set_message(t('The settings have not been saved because of the errors.'), 'error');
   }
+
+  // Adding our custom submission handler.
+  $form['#submit'][] = 'superfish_menu_settings_submit';
+
   $form['#submit'][] = 'system_settings_form_submit';
   $form['#theme'] = 'system_settings_form';
   return $form;
@@ -54,7 +58,7 @@ function superfish_menu_settings() {
     '#title' => t('Number of blocks'),
     '#multiple' => FALSE,
     '#options' => drupal_map_assoc(range(1, 50)),
-    '#description' => t('The number of Superfish menu blocks.'),
+    '#description' => t('The number of Superfish menu blocks.') . ' (' . t('Default') . ': 4' . ')' . '<br />' . t('Please note decreasing this number leads to permanent deletion of blocks.'),
     '#default_value' => variable_get('superfish_number', 4),
   );
   $form['superfish_slp'] = array(
@@ -99,5 +103,28 @@ function superfish_menu_settings_validate($form, &$form_state) {
       }
       form_set_error('superfish_slp', $error_message);
     }
+  }
+}
+
+/**
+ * Custom submission handler for the settings form.
+ */
+function superfish_menu_settings_submit($form, &$form_state) {
+  $values = &$form_state['values'];
+  $before = variable_get('superfish_number', 4);
+  $after = $values['superfish_number'];
+  // If the number of blocks has been decreased.
+  if ($before > $after) {
+    // How many blocks should be removed?
+    $reduce = $before - $after;
+    // Remove each block with all its variables.
+    $delta = $after;
+    for ($i = 0; $i < $reduce; $i++) {
+      $delta++;
+      db_query("DELETE FROM {variable} WHERE name LIKE 'superfish_%%_" . $delta . "'");
+      db_query("DELETE FROM {blocks} WHERE module = 'superfish'");
+      db_query("DELETE FROM {blocks_roles} WHERE module = 'superfish'");
+    }
+    drupal_set_message(t('Successfully removed @number Superfish block(s).', array('@number' => $reduce)));
   }
 }
