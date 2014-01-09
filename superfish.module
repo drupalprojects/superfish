@@ -66,10 +66,10 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
         $primary = variable_get('menu_primary_links_source', FALSE);
         $secondary = variable_get('menu_secondary_links_source', FALSE);
         if ($primary) {
-          $menu_default['domainaccessmenu1st-' . $primary . ':0'] = t('Domains Access') . ': &lt;' . t('Primary links') . '&gt;';
+          $menu_default['domainaccessmenu1st-' . $primary . ':0'] = t('Domains Access') . ': ' . t('Primary links');
         }
         if ($secondary) {
-          $menu_default['domainaccessmenu2nd-' . $secondary . ':0'] = t('Domains Access') . ': &lt;' . t('Secondary links') . '&gt;';
+          $menu_default['domainaccessmenu2nd-' . $secondary . ':0'] = t('Domains Access') . ': ' . t('Secondary links');
         }
       }
       $menu_default += menu_parent_options(menu_get_menus(), 0);
