@@ -517,6 +517,11 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
         '#title' => t('Enable Supersubs for this menu.'),
         '#default_value' => variable_get('superfish_supersubs_'. $delta, 1),
       );
+      $form['sf-plugins']['sf-supersubs']['superfish_supersubs_emm_' . $delta] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Do not use Supersubs for multi-column sub-menus.'),
+        '#default_value' => variable_get('superfish_supersubs_emm_' . $delta, 0),
+      );
       $form['sf-plugins']['sf-supersubs']['superfish_minwidth_'. $delta] = array(
         '#type' => 'textfield',
         '#title' => t('Minimum width'),
@@ -782,6 +787,7 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
       variable_set('superfish_smallamt_' . $delta, $edit['superfish_smallamt_' . $delta]);
       variable_set('superfish_smallabt_' . $delta, $edit['superfish_smallabt_' . $delta]);
       variable_set('superfish_supersubs_'. $delta, $edit['superfish_supersubs_'. $delta]);
+      variable_set('superfish_supersubs_emm_' . $delta, $edit['superfish_supersubs_emm_' . $delta]);
       variable_set('superfish_minwidth_'. $delta, $edit['superfish_minwidth_'. $delta]);
       variable_set('superfish_maxwidth_'. $delta, $edit['superfish_maxwidth_'. $delta]);
       variable_set('superfish_multicolumn_'. $delta, $edit['superfish_multicolumn_'. $delta]);
@@ -1058,11 +1064,13 @@ function superfish_block($op = 'list', $delta = 0, $edit = array()) {
       $sfplugins['bgiframe'] = (variable_get('superfish_bgf_'. $delta, 0) == 1) ? TRUE : '';
 
       if (variable_get('superfish_supersubs_'. $delta, 1) == 1) {
+        $emm = variable_get('superfish_supersubs_emm_' . $delta, 0);
         $minwidth = variable_get('superfish_minwidth_' . $delta, 12);
         $maxwidth = variable_get('superfish_maxwidth_' . $delta, 27);
+        $sfplugins['supersubs']['megamenu'] = ($emm) ? FALSE : '';
         $sfplugins['supersubs']['minWidth'] = ($minwidth != 12) ? $minwidth : '';
         $sfplugins['supersubs']['maxWidth'] = ($maxwidth != 27) ? $maxwidth : '';
-        if (empty($sfplugins['supersubs']['minWidth']) && empty($sfplugins['supersubs']['maxWidth'])) {
+        if (empty($sfplugins['supersubs']['minWidth']) && empty($sfplugins['supersubs']['maxWidth']) && $sfplugins['supersubs']['megamenu'] !== FALSE) {
           $sfplugins['supersubs'] = TRUE;
         }
       }

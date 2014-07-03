@@ -37,7 +37,7 @@ function superfish_library_path() {
  * Overriding system settings form.
  */
 function superfish_system_settings_form($form) {
-  $form['buttons']['submit'] = array('#type' => 'submit', '#value' => t('Save configuration') );
+  $form['buttons']['submit'] = array('#type' => 'submit', '#value' => t('Save configuration'));
   if (!empty($_POST) && form_get_errors()) {
     drupal_set_message(t('The settings have not been saved because of the errors.'), 'error');
   }
@@ -58,7 +58,7 @@ function superfish_menu_settings() {
     '#type' => 'select',
     '#title' => t('Number of blocks'),
     '#multiple' => FALSE,
-    '#options' => drupal_map_assoc(range(1, 50)),
+    '#options' => drupal_map_assoc(range(1, 500)),
     '#description' => t('The number of Superfish menu blocks.') . ' (' . t('Default') . ': 4' . ')' . '<br />' . t('Please note decreasing this number leads to permanent deletion of blocks.'),
     '#default_value' => variable_get('superfish_number', 4),
   );
