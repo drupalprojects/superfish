@@ -70,7 +70,7 @@ class SuperfishBlock extends SystemMenuBlock {
     $form['sf']['superfish_slide'] = array(
       '#type' => 'select',
       '#title' => $this->t('Slide-in effect'),
-      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Vertical') . ')</em><br />' . ((count(superfish_effects()) == 4) ? $this->t('jQuery Easing plugin is not installed.') . '<br />' . $this->t('The plugin provides a handful number of animation effects, they can be used by uploading the \'jquery.easing.js\' file to the libraries directory within the \'easing\' directory (for example: sites/all/libraries/easing/jquery.easing.js). Refresh this page after the plugin is uploaded, this will make more effects available in the above list.') . '<br />' : ''),
+      '#description' => '<em>(' . $this->t('Default') . ': ' . $this->t('Vertical') . ')</em><br />' . ((count(superfish_effects()) == 4) ? $this->t('jQuery Easing plugin is not installed.') . '<br />' . $this->t('The plugin provides a handful number of animation effects, they can be used by uploading the \'jquery.easing.js\' file to the libraries directory within the \'easing\' directory (for example: libraries/easing/jquery.easing.js). Refresh this page after the plugin is uploaded, this will make more effects available in the above list.') . '<br />' : ''),
       '#default_value' => $this->configuration['slide'],
       '#options' => superfish_effects(),
     );
