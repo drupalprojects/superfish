@@ -210,6 +210,9 @@ function superfish_library_path($library = 'superfish') {
   elseif (file_exists('sites/all/libraries/' . $library)) {
     $directory = 'sites/all/libraries/' . $library;
   }
+  elseif (file_exists('sites/default/libraries/' . $library)) {
+    $directory = 'sites/default/libraries/' . $library;
+  }
   return $directory;
 }
 
