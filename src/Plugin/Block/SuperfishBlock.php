@@ -3,7 +3,6 @@
 namespace Drupal\superfish\Plugin\Block;
 
 use Drupal\system\Plugin\Block\SystemMenuBlock;
-use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;

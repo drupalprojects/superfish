@@ -5,8 +5,6 @@
  * Install, update and uninstall functions for the Superfish module.
  */
 
-use Drupal\Core\Language\Language;
-
 /**
  * Implements hook_enable().
  */

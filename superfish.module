@@ -5,9 +5,7 @@
  * jQuery Superfish plugin for Drupal menus.
  */
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**

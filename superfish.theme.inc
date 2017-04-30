@@ -5,12 +5,9 @@
  */
 
 use Drupal\Core\Url;
-use Drupal\Core\Menu\MenuLinkDefault;
 use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\Unicode;
 use Drupal\Component\Utility\SafeMarkup;
 
 /**
