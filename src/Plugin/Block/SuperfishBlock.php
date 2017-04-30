@@ -476,23 +476,76 @@ class SuperfishBlock extends SystemMenuBlock {
    * Overrides \Drupal\block\BlockBase::blockValiate().
    */
   public function blockValidate($form, FormStateInterface $form_state) {
-    /**
-     // Commented out for now as I couldn't get validation to work, with RC4 at least.
+    $touch = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touch',
+    ]);
+    $touchbp = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-windowwidth',
+      'superfish_touchbp',
+    ]);
+    $touchua = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchua',
+    ]);
+    $touchual = $form_state->getValue([
+      'sf-plugins',
+      'sf-touchscreen',
+      'sf-touchscreen-useragent',
+      'superfish_touchual',
+    ]);
+    $small = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_small',
+    ]);
+    $smallbp = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-windowwidth',
+      'superfish_smallbp',
+    ]);
+    $smallua = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallua',
+    ]);
+    $smallual = $form_state->getValue([
+      'sf-plugins',
+      'sf-smallscreen',
+      'sf-smallscreen-useragent',
+      'superfish_smallual',
+    ]);
+    $minwidth = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_minwidth',
+    ]);
+    $maxwidth = $form_state->getValue([
+      'sf-plugins',
+      'sf-supersubs',
+      'superfish_maxwidth',
+    ]);
+    $speed = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_speed',
+    ]);
+    $delay = $form_state->getValue([
+      'sf-advanced',
+      'sf-settings',
+      'superfish_delay',
+    ]);
 
-    $touch = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touch'));
-    $touchbp = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-windowwidth', 'superfish_touchbp'));
-    $touchua = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchua'));
-    $touchual = $form_state->getValue(array('sf-plugins', 'sf-touchscreen', 'sf-touchscreen-useragent', 'superfish_touchual'));
-    $small = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_small'));
-    $smallbp = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallbp'));
-    $smallua = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallua'));
-    $smallual = $form_state->getValue(array('sf-plugins', 'sf-smallscreen', 'sf-smallscreen-useragent', 'superfish_smallual'));
-    $minwidth = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_minwidth'));
-    $maxwidth = $form_state->getValue(array('sf-plugins', 'sf-supersubs', 'superfish_maxwidth'));
-    $speed = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_speed'));
-    $delay = $form_state->getValue(array('sf-advanced', 'sf-settings', 'superfish_delay'));
-
-    if (!is_numeric($speed) && !in_array($speed, array('slow', 'normal', 'fast'))) {
+    if (!is_numeric($speed) && !in_array($speed, ['slow', 'normal', 'fast'])) {
       $form_state->setErrorByName('superfish_speed', t('Unacceptable value entered for the "Animation speed" option.'));
     }
     if (!is_numeric($delay)) {
@@ -529,9 +582,6 @@ class SuperfishBlock extends SystemMenuBlock {
     if ($supersubs_error !== TRUE && $minwidth > $maxwidth) {
       $form_state->setErrorByName('superfish_maxwidth', t('Supersubs "maximum width" has to be bigger than the "minimum width".'));
     }
-
-    parent::blockValidate($form, $form_state);
-    */
   }
 
   /**
