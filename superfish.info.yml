@@ -2,6 +2,4 @@ name: 'Superfish'
 type: module
 description: 'Adds jQuery Superfish plugin to menu blocks.'
 package: User interface
-
-version: VERSION
 core: 8.x
