@@ -1236,7 +1236,7 @@ class SuperfishBlock extends SystemMenuBlock {
         case 2:
           $sfplugins['touchscreen']['mode'] = 'window_width';
           $tsbp = $this->configuration['touchbp'];
-          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (int) $tsbp : '';
+          $sfplugins['touchscreen']['breakpoint'] = ($tsbp != 768) ? (float) $tsbp : '';
           break;
 
         case 3:
@@ -1321,7 +1321,7 @@ class SuperfishBlock extends SystemMenuBlock {
           $sfplugins['smallscreen']['mode'] = 'window_width';
           $ssbp = $this->configuration['smallbp'];
           if ($ssbp != 768) {
-            $sfplugins['smallscreen']['breakpoint'] = (int) $ssbp;
+            $sfplugins['smallscreen']['breakpoint'] = (float) $ssbp;
           }
           else {
             $sfplugins['smallscreen']['breakpoint'] = '';
