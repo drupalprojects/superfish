@@ -27,7 +27,7 @@ function superfish_requirements($phase) {
     $requirements['superfish']['title'] = t('Superfish library');
 
     if (superfish_library_check()) {
-      $requirements['superfish']['value'] = t('Installed at @location', ['@location' => superfish_library_path()]);
+      $requirements['superfish']['value'] = t('Installed; at @location', ['@location' => superfish_library_path()]);
       $requirements['superfish']['severity'] = REQUIREMENT_OK;
     }
     else {
