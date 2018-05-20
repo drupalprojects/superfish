@@ -30,8 +30,7 @@
     {% endif %}
   {% endif %}
 
-  <li id="{{ item.id }}"
-    {% if item.item_class %} class="{{ item.item_class }}"{% endif %}>
+  <li{{ item.attributes }}>
     {% if item.multicolumn_column %}
     <div class="sf-multicolumn-column">
     {% endif %}
