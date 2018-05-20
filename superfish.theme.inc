@@ -10,6 +10,7 @@ use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Prepares variables for the Superfish menu template.
@@ -291,10 +292,27 @@ function template_preprocess_superfish_menu_items(array &$variables) {
         '#options' => $item['options_menuparent'],
       ];
 
-      $id = $element['#menu_name'] . '-' . $item['id'];
+      $item_attributes = new Attribute();
+      if (isset($item['options']['item_attributes'])) {
+        foreach ($item['options']['item_attributes'] as $name => $value) {
+          $value = trim($value);
+          if ($value) {
+            $item_attributes->offsetSet($name, $value);
+          }
+        }
+      }
+
+      $id = Html::getUniqueId($element['#menu_name'] . '-' . $item['id']);
+      if (!$item_attributes->offsetGet('id')) {
+        $item_attributes->offsetSet('id', $id);
+      }
+
+      if ($item_class) {
+        $item_attributes->offsetSet('class', trim($item_attributes->offsetGet('class') . ' ' . $item_class));
+      }
+
       $variables['menu_items'][] = [
-        'id'                  => Html::getUniqueId($id),
-        'item_class'          => $item_class,
+        'attributes'          => $item_attributes,
         'link'                => $link_element,
         'link_menuparent'     => $link_element_menuparent,
         'children'            => $children,
